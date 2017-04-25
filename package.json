@@ -1,6 +1,6 @@
 {
   "name": "jud-rax-framework",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "jud rax framework",
   "main": "dist/framework.jud.js",
   "scripts": {
