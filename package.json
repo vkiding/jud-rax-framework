@@ -1,0 +1,30 @@
+{
+  "name": "jud-rax-framework",
+  "version": "0.0.2",
+  "description": "jud rax framework",
+  "main": "dist/framework.jud.js",
+  "scripts": {
+    "build:jsfm": "./build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vkiding/jud-rax-framework.git"
+  },
+  "keywords": [
+    "jud"
+  ],
+  "author": "vkiding",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/vkiding/jud-rax-framework/issues"
+  },
+  "dependencies": {
+    "rax": "^0.1.7",
+    "runtime-shared": "^0.1.7"
+  },
+  "devDependencies": {
+    "jud-js-runtime": "^0.0.2",
+    "jud-vdom-tester": "^0.0.1"
+  },
+  "homepage": "https://github.com/vkiding/jud-rax-framework#readme"
+}

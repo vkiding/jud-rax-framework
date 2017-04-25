@@ -1,0 +1,56 @@
+#!/usr/bin/env bash
+
+# Example: ./build -n tnpm -b
+
+# Reset in case getopts has been used previously in the shell.
+OPTIND=1
+
+# Initialize our own variables:
+npm="npm"
+install="link"
+onlyBuild=0
+
+while getopts "bin:" opt; do
+  case "$opt" in
+    b) onlyBuild=1
+    ;;
+    i) install="install"
+    ;;
+    n) npm=$OPTARG
+    ;;
+  esac
+done
+
+shift $((OPTIND-1))
+
+[ "$1" = "--" ] && shift
+
+echo "Make sure you has been build `jud-rax-framework` by `npm run dist` in `rax` project root"
+
+echo "Creates global jud-rax-framework link:"
+$npm link
+
+if [[ $onlyBuild == 1 ]]; then
+
+  echo "Build without prerequisites:"
+  cd jud
+
+else
+
+  echo "Clone the jud repository and install prerequisites:"
+  git clone https://github.com/alibaba/jud.git --depth=1
+  cd jud
+  $npm install
+
+fi
+
+echo "Install/Link the jud-rax-framework of your dependency:"
+npm $install jud-rax-framework
+
+echo "Config jud/html5/frameworks/index.js"
+echo -e "import * as Jud from './legacy/index'\nimport Rax from 'jud-rax-framework'\nexport default {\n  Rax, Jud\n}" > html5/frameworks/index.js
+
+echo "Build jsfm for native renderer to jud/dist/native.js"
+$npm run build:native
+
+echo "Done"
